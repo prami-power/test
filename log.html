@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Change Log Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #111827;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    thead {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    tbody tr:hover {
+      background-color: #f9fafb;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+      }
+
+      td:before {
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #555;
+      }
+
+      td:nth-of-type(1):before { content: "Website"; }
+      td:nth-of-type(2):before { content: "Version"; }
+      td:nth-of-type(3):before { content: "Date"; }
+      td:nth-of-type(4):before { content: "Changes"; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Change Log Viewer</h1>
+
+    <input type="text" id="searchInput" placeholder="Search by website, version, or changes..." />
+
+    <table>
+      <thead>
+        <tr>
+          <th>Website</th>
+          <th>Version</th>
+          <th>Date</th>
+          <th>Changes</th>
+        </tr>
+      </thead>
+      <tbody id="logTableBody"></tbody>
+    </table>
+
+    <div class="link">
+      <a href="index.html">← Back to Entry Form</a>
+    </div>
+  </div>
+
+
+  <script>
+    const logs = JSON.parse(localStorage.getItem('changeLogs')) || [];
+    const tableBody = document.getElementById('logTableBody');
+    const searchInput = document.getElementById('searchInput');
+
+    // Function to render logs
+    function renderLogs(data) {
+      tableBody.innerHTML = '';
+      if (data.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="4">No matching entries found.</td></tr>`;
+        return;
+      }
+      data.forEach(log => {
+        const row = `
+          <tr>
+            <td>${log.website}</td>
+            <td>${log.version}</td>
+            <td>${log.date}</td>
+            <td>${log.changes.replace(/\n/g, '<br>')}</td>
+          </tr>
+        `;
+        tableBody.insertAdjacentHTML('beforeend', row);
+      });
+    }
+
+    // Initial render (reverse to show latest first)
+    renderLogs(logs.slice().reverse());
+
+    // Filter on input
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = logs.filter(log =>
+        log.website.toLowerCase().includes(query) ||
+        log.version.toLowerCase().includes(query) ||
+        log.changes.toLowerCase().includes(query)
+      );
+      renderLogs(filtered.slice().reverse());
+    });
+  </script>
+</body>
+</html>

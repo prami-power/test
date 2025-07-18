@@ -1,0 +1,178 @@
+/* General Body and Wrapper Styling (similar to login.css) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5; /* Light grey background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(./src/img/background.jpg); /* Adjust path if needed */
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 450px; /* Slightly wider than login for more fields */
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Input Box Styling */
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.input-box input::placeholder {
+    color: #999;
+}
+
+.input-box input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Password eye icon styling */
+.password-input-container {
+    position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+    font-size: 18px;
+}
+
+.eye-icon:hover {
+    color: #555;
+}
+
+/* Terms and Conditions Checkbox */
+.terms-checkbox {
+    font-size: 14px;
+    margin: -15px 0 20px;
+    color: #555;
+    text-align: left;
+}
+
+.terms-checkbox label input {
+    accent-color: #007bff;
+    margin-right: 5px;
+}
+
+.terms-checkbox .terms-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.terms-checkbox .terms-link:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #007bff;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    margin-top: 20px; /* Space above button */
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Register Link */
+.register-link {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
+/* Error and Success Message Styling */
+.error-message {
+    background-color: #ffe0e0;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.success-message {
+    background-color: #e0ffe0;
+    color: #008000;
+    border: 1px solid #008000;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+
+/* Accessibility for screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
